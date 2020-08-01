@@ -1,0 +1,32 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <button v-on:click="increase(2, $event)">Click Me!</button>
+    <p>{{ counter }}</p>
+    <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }}
+     - <span v-on:mousemove.stop="">DEAD SPOT</span>
+    </p>
+    <input type="text" v-on:keyup.enter.space="alertMe">
+</div>
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    x: 0,
+    y: 0,
+    counter: 0,
+  },
+  methods: {
+      increase: function(step, event) {
+          this.counter+= step;
+      },
+      updateCoordinates: function(event) {
+          this.x = event.clientX;
+          this.y = event.clientY;
+      },
+      alertMe: function() {
+          alert('Alert!');
+      }
+  }
+})
+</script>
